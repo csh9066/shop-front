@@ -1,5 +1,6 @@
 import { Col, Row } from 'antd';
 import Link from 'next/link';
+import AppLayout from '../components/layout/AppLaoyout';
 import ProductCard from '../components/product/ProductCard';
 
 function HomePage() {
@@ -11,17 +12,19 @@ function HomePage() {
   });
 
   return (
-    <Row className="home">
-      {mockProducts.map(({ title, price, thumnali }, i) => (
-        <Col span="12" key={i} style={{ padding: 10 }} md={6}>
-          <Link href="/">
-            <a>
-              <ProductCard title={title} price={price} thumnali={thumnali} />
-            </a>
-          </Link>
-        </Col>
-      ))}
-    </Row>
+    <AppLayout>
+      <Row className="home">
+        {mockProducts.map(({ title, price, thumnali }, i) => (
+          <Col span="12" key={i} style={{ padding: 10 }} md={6}>
+            <Link href="/">
+              <a>
+                <ProductCard title={title} price={price} thumnali={thumnali} />
+              </a>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+    </AppLayout>
   );
 }
 

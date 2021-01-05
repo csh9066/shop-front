@@ -8,28 +8,20 @@ import { UserOutlined } from '@ant-design/icons';
 
 function Header() {
   return (
-    <header
-      style={{
-        position: 'fixed',
-        backgroundColor: 'white',
-        zIndex: 1,
-        width: '100%',
-      }}
-    >
-      <div style={{ borderBottom: '1px solid #ddd' }}>
-        <StyledHeader>
-          <div className="logo">
-            <Link href="/">
-              <a>
-                <img src="/logo.png" className="logo-img" />
-              </a>
-            </Link>
-          </div>
-          <div className="search">
-            <Input.Search placeholder="검색어를 입력해주세요" size="large" />
-          </div>
+    <div style={{ borderBottom: '1px solid #ddd' }}>
+      <StyledHeader>
+        <div className="logo">
+          <Link href="/">
+            <a>
+              <img src="/logo.png" className="logo-img" />
+            </a>
+          </Link>
+        </div>
+        <div className="search">
+          <Input.Search placeholder="검색어를 입력해주세요" size="large" />
+        </div>
 
-          {/* <div className="auth-btns">
+        {/* <div className="auth-btns">
             <Link href="/">
               <a>로그인</a>
             </Link>
@@ -38,40 +30,36 @@ function Header() {
             </Link>
           </div> */}
 
-          <div className="noti">
-            <Link href="/chat">
-              <a>
-                <Badge count={0} size={'small'}>
-                  <img src="/talk.png" alt="" />
-                </Badge>
-              </a>
-            </Link>
-            <Link href="/alram">
-              <a>
-                <Badge count={0} size={'small'}>
-                  <img src="/noti.png" alt="" />
-                </Badge>
-              </a>
-            </Link>
-          </div>
-          <div className="user-nav">
-            <Dropdown
-              overlay={<HeaderMenu />}
-              trigger={['click']}
-              getPopupContainer={(triggerNode) => triggerNode.parentNode as any}
-            >
-              <div>
-                <Avatar icon={<UserOutlined />} />
-                <Typography.Text className="nick">n16297463님</Typography.Text>
-              </div>
-            </Dropdown>
-          </div>
-        </StyledHeader>
-      </div>
-      <div style={{ borderBottom: '1px solid #ddd' }}>
-        <Navigation />
-      </div>
-    </header>
+        <div className="noti">
+          <Link href="/chat">
+            <a>
+              <Badge count={0} size={'small'}>
+                <img src="/talk.png" alt="" />
+              </Badge>
+            </a>
+          </Link>
+          <Link href="/alram">
+            <a>
+              <Badge count={0} size={'small'}>
+                <img src="/noti.png" alt="" />
+              </Badge>
+            </a>
+          </Link>
+        </div>
+        <div className="user-nav">
+          <Dropdown
+            overlay={<HeaderMenu />}
+            trigger={['click']}
+            getPopupContainer={(triggerNode) => triggerNode.parentNode as any}
+          >
+            <div>
+              <Avatar icon={<UserOutlined />} />
+              <Typography.Text className="nick">n16297463님</Typography.Text>
+            </div>
+          </Dropdown>
+        </div>
+      </StyledHeader>
+    </div>
   );
 }
 
