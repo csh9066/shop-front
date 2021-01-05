@@ -6,6 +6,7 @@ export const StyledHeader = styled.header`
   margin: 0 auto;
   display: flex;
   align-items: center;
+
   .logo {
     flex-basis: 180px;
     .logo-img {

@@ -13,6 +13,7 @@ export const StyledNavigation = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
@@ -56,6 +57,7 @@ export const StyledCategories = styled.ul`
   border-bottom: 1px solid #e8ebed;
   border-left: 1px solid #e8ebed;
   width: 409px;
+  background-color: white;
 
   li {
     width: 136px;

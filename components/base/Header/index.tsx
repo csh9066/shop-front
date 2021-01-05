@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import { Dropdown, Input, Menu, Typography } from 'antd';
+import { Badge, Dropdown, Input, Menu, Typography } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import { StyledHeader } from './styles';
 import Navigation from '../Navigation';
+import { UserOutlined } from '@ant-design/icons';
 
 function Header() {
   return (
@@ -28,24 +29,28 @@ function Header() {
             <Input.Search placeholder="검색어를 입력해주세요" size="large" />
           </div>
 
-          <div className="auth-btns">
+          {/* <div className="auth-btns">
             <Link href="/">
               <a>로그인</a>
             </Link>
             <Link href="/">
               <a>로그아웃</a>
             </Link>
-          </div>
+          </div> */}
 
-          {/* <div className="noti">
+          <div className="noti">
             <Link href="/chat">
               <a>
-                <img src="/talk.png" alt="" />
+                <Badge count={0} size={'small'}>
+                  <img src="/talk.png" alt="" />
+                </Badge>
               </a>
             </Link>
             <Link href="/alram">
               <a>
-                <img src="/noti.png" alt="" />
+                <Badge count={0} size={'small'}>
+                  <img src="/noti.png" alt="" />
+                </Badge>
               </a>
             </Link>
           </div>
@@ -56,11 +61,11 @@ function Header() {
               getPopupContainer={(triggerNode) => triggerNode.parentNode as any}
             >
               <div>
-                <Avatar size="large">최</Avatar>
+                <Avatar icon={<UserOutlined />} />
                 <Typography.Text className="nick">n16297463님</Typography.Text>
               </div>
             </Dropdown>
-          </div> */}
+          </div>
         </StyledHeader>
       </div>
       <div style={{ borderBottom: '1px solid #ddd' }}>
