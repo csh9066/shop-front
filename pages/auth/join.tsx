@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Form, Input } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 import AuthLayout from '../../components/layout/AuthLayout';
@@ -8,20 +8,60 @@ function JoinPage() {
 
   return (
     <AuthLayout title="회원가입">
-      <Form form={form} layout="vertical">
-        <Form.Item label="아이디(이메일)" name="email" required>
+      <Form form={form} layout="vertical" validateMessages={validateMessages}>
+        <Form.Item
+          label="아이디(이메일)"
+          name="email"
+          rules={[{ required: true }, { type: 'email' }]}
+        >
           <Input placeholder="이메일 주소입력" size="large" />
         </Form.Item>
-        <Form.Item label="비밀번호" name="password" required>
+        <Form.Item
+          label="비밀번호"
+          name="password"
+          rules={[
+            { required: true },
+            {
+              validator: (_, value: string) => {
+                if (!value || /^[\w | $@$!%*#?&]{8,16}$/.test(value)) {
+                  return Promise.resolve();
+                }
+                return Promise.reject('비밀번호는 6-15자로 입력해주세요.');
+              },
+            },
+          ]}
+        >
           <Input.Password
-            placeholder="영문, 숫자, 특수문자 포함 6~15자"
+            placeholder="영문, 숫자, 특수문자 포함 8~15자"
             size="large"
           />
         </Form.Item>
-        <Form.Item label="비밀번호 확인" name="passwordCheck" required>
+        <Form.Item
+          label="비밀번호 확인"
+          name="passwordCheck"
+          dependencies={['password']}
+          rules={[
+            { required: true },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject('비밀번호가 일치하지 않습니다.');
+              },
+            }),
+          ]}
+        >
           <Input.Password placeholder="비밀번호 확인" size="large" />
         </Form.Item>
-        <Form.Item label="닉네임" name="nickname" required>
+        <Form.Item
+          label="닉네임"
+          name="nickname"
+          rules={[
+            { required: true },
+            { min: 2, max: 16, message: '닉네임은 2-16자로 입력해주세요' },
+          ]}
+        >
           <Input placeholder="닉네임" size="large" />
         </Form.Item>
         <Form.Item>
@@ -46,5 +86,12 @@ function JoinPage() {
     </AuthLayout>
   );
 }
+
+const validateMessages = {
+  required: '필수 정보입니다.',
+  types: {
+    email: '이메일 형식에 맞게 입력해주세요',
+  },
+};
 
 export default JoinPage;
