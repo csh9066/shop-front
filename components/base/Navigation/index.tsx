@@ -24,7 +24,7 @@ function Navigation() {
         </div>
       </Dropdown>
       <Button type="primary">
-        <Link href="/">
+        <Link href="/products/register-form">
           <a>
             <img src="camera.png" alt="" />
             <span>판매하기</span>
