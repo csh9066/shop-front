@@ -1,14 +1,44 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Modal } from 'antd';
+import axios from 'axios';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import AuthLayout from '../../components/layout/AuthLayout';
+import { API_URL, ValidateMessages } from '../../constants';
 
 function JoinPage() {
-  const [form] = Form.useForm();
+  const route = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const onJoin = async (form) => {
+    setLoading(true);
+    try {
+      await axios.post(`${API_URL}/auth/join`, form);
+      Modal.info({
+        content: '이메일을 확인 해주세요',
+        onOk: () => {
+          route.push('/');
+        },
+      });
+    } catch (e) {
+      const res = e.response;
+      if (res) {
+        Modal.error({
+          content: res.data.message,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <AuthLayout title="회원가입">
-      <Form form={form} layout="vertical" validateMessages={validateMessages}>
+      <Form
+        layout="vertical"
+        validateMessages={ValidateMessages}
+        onFinish={onJoin}
+      >
         <Form.Item
           label="아이디(이메일)"
           name="email"
@@ -71,6 +101,7 @@ function JoinPage() {
             size="large"
             style={{ height: 57 }}
             htmlType="submit"
+            loading={loading}
           >
             이메일로 회원가입 하기
           </Button>
@@ -86,12 +117,5 @@ function JoinPage() {
     </AuthLayout>
   );
 }
-
-const validateMessages = {
-  required: '필수 정보입니다.',
-  types: {
-    email: '이메일 형식에 맞게 입력해주세요',
-  },
-};
 
 export default JoinPage;
