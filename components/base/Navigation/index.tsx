@@ -3,6 +3,8 @@ import { DownOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { StyledCategories, StyledNavigation } from './sytles';
+import { ProductCategory } from '../../../types/products';
+import { CategoryTextMap } from '../../../constants';
 
 function Navigation() {
   const [visible, setVisibile] = useState(false);
@@ -24,9 +26,9 @@ function Navigation() {
         </div>
       </Dropdown>
       <Button type="primary">
-        <Link href="/products/register-form">
+        <Link href="/products/form">
           <a>
-            <img src="camera.png" alt="" />
+            <img src="/camera.png" alt="" />
             <span>판매하기</span>
           </a>
         </Link>
@@ -38,69 +40,12 @@ function Navigation() {
 function Categories() {
   return (
     <StyledCategories>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
-      <li>
-        <img
-          src="https://ccimage.hellomarket.com/web/2018/common/category/cate_hfa0000.png"
-          alt=""
-        />
-        <span>자동차</span>
-      </li>
+      {Object.values(ProductCategory).map((v) => (
+        <li key={v}>
+          <img src={`/categories/${v}.png`} />
+          {CategoryTextMap[v]}
+        </li>
+      ))}
     </StyledCategories>
   );
 }

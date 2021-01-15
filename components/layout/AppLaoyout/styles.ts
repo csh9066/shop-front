@@ -15,4 +15,10 @@ export const StyledAppLayout = styled.div`
   .spacer {
     height: 163px;
   }
+
+  .content {
+    max-width: 990px;
+    margin: 0 auto;
+    padding-top: 10px;
+  }
 `;

@@ -76,7 +76,7 @@ const HeaderMenu = ({ onLogOut }) => {
   return (
     <Menu style={{ border: '1px solid #ddd' }}>
       <Menu.Item>
-        <Link href="/store">
+        <Link href="/store" >
           <a>내 상점</a>
         </Link>
       </Menu.Item>

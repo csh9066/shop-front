@@ -19,7 +19,7 @@ function AppLayout({ children }: props) {
         </div>
       </header>
       <div className="spacer" />
-      {children}
+      <div className="content">{children}</div>
     </StyledAppLayout>
   );
 }
