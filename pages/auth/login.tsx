@@ -11,7 +11,7 @@ function LoginPage() {
   const router = useRouter();
   const [form] = Form.useForm();
   const [user, setUser] = useUser();
-  const [emailSaveCheck, setEmailSaveCheck] = useState();
+  const [emailSaveCheck, setEmailSaveCheck] = useState<boolean>(false);
 
   const onChangeEmailSaveCheck = (e) => {
     setEmailSaveCheck(e.target.checked);
@@ -58,7 +58,13 @@ function LoginPage() {
         <Form.Item name="email" rules={[{ required: true }, { type: 'email' }]}>
           <Input size="large" placeholder="아이디(이메일)" />
         </Form.Item>
-        <Form.Item name="password" rules={[{ required: true }]}>
+        <Form.Item
+          name="password"
+          rules={[
+            { required: true },
+            { min: 8, max: 16, message: '비밀번호는 6-15자로 입력해주세요.' },
+          ]}
+        >
           <Input.Password size="large" placeholder="비밀번호" />
         </Form.Item>
         <Form.Item>

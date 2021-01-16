@@ -7,9 +7,25 @@
   padding: 0 4px;
 }
 
-/* homePage */
-.home {
-  max-width: 990px;
-  margin: 0 auto;
-  padding-top: 10px;
+.ant-upload.ant-upload-select-picture-card,
+.ant-upload-list-picture-card-container {
+  width: 160px;
+  height: 160px;
+  position: relative;
 }
+
+.ant-upload-list-picture-card-container:nth-child(1)::after {
+  content: '대표이미지';
+  display: block;
+  position: absolute;
+  top: 0;
+  background-color: #0484f6;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: -0.3px;
+  padding: 4px 0;
+  text-align: center;
+  width: 78px;
+}
+
+/* homePage */

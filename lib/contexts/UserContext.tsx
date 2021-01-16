@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 import { API_URL, JWT_LOGIN_TOKEN } from '../../constants';
-import { User } from '../../interfaces/user';
+import { User } from '../../types/users';
 
 export const UserContext = createContext<[User, Dispatch<User>] | null>(null);
 
