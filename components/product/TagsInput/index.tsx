@@ -1,6 +1,6 @@
 import { Input, Modal, Tag } from 'antd';
 import { ModalProps } from 'antd/lib/modal';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyledTagsInput } from './style';
 
 type props = {
@@ -10,18 +10,30 @@ type props = {
 
 function TagsInput({ onChange, value: tags }: props) {
   const [localTag, setLolcaTag] = useState('');
+  const inputRef = useRef<any>();
 
   const onChangeLolcaTag = (e) => {
-    if (e.target.value.length > MAX_LOCCALTAG_LENGTH) {
+    const tag: string = e.target.value;
+
+    if (tag && tag.length > MAX_LOCCALTAG_LENGTH) {
       return;
     }
 
-    setLolcaTag(e.target.value);
+    setLolcaTag(tag);
   };
 
   const onInsertTag = () => {
+    if (localTag.length <= 0) {
+      return;
+    }
+
     if (tags.includes(localTag)) {
-      Modal.error({ content: '이미 입력한 태그입니다.' });
+      Modal.error({
+        content: '이미 입력한 태그입니다.',
+        onOk: () => {
+          inputRef.current?.focus();
+        },
+      });
       return;
     }
 
@@ -39,7 +51,7 @@ function TagsInput({ onChange, value: tags }: props) {
   };
 
   return (
-    <StyledTagsInput>
+    <>
       <Input
         placeholder="태그를 입력하세요"
         prefix="#"
@@ -47,14 +59,22 @@ function TagsInput({ onChange, value: tags }: props) {
         value={localTag}
         onChange={onChangeLolcaTag}
         onPressEnter={onInsertTag}
-        width="180"
+        ref={inputRef}
+        style={{ width: 180 }}
       />
-      {tags.map((tag) => (
-        <Tag closable onClose={() => onDeleteTag(tag)} key={tag}>
-          {tag}
-        </Tag>
-      ))}
-    </StyledTagsInput>
+      <div>
+        {tags.map((tag) => (
+          <Tag
+            closable
+            onClose={() => onDeleteTag(tag)}
+            key={tag}
+            style={{ marginTop: 6 }}
+          >
+            {tag}
+          </Tag>
+        ))}
+      </div>
+    </>
   );
 }
 
