@@ -1,14 +1,13 @@
 import { Input, Modal, Tag } from 'antd';
 import { ModalProps } from 'antd/lib/modal';
 import React, { useRef, useState } from 'react';
-import { StyledTagsInput } from './style';
 
 type props = {
   onChange?: (value: string[]) => void;
   value?: string[];
 } & ModalProps;
 
-function TagsInput({ onChange, value: tags }: props) {
+function TagsInput({ onChange, value: tags = [] }: props) {
   const [localTag, setLolcaTag] = useState('');
   const inputRef = useRef<any>();
 

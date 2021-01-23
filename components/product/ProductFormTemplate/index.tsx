@@ -7,9 +7,10 @@ type props = {
   children: React.ReactNode;
   type: 'register' | 'update';
   submit: any;
+  loading?: boolean;
 };
 
-function ProductFormTemplate({ children, type, submit }: props) {
+function ProductFormTemplate({ children, type, submit, loading }: props) {
   return (
     <StyledProductFormTemplate>
       <div className="wrapper">
@@ -24,7 +25,7 @@ function ProductFormTemplate({ children, type, submit }: props) {
             <a>취소</a>
           </Link>
         </Button>
-        <Button type="primary" onClick={submit}>
+        <Button type="primary" onClick={submit} loading={loading}>
           {type === 'register' ? '등록 완료' : '수정 완료'}
         </Button>
       </div>

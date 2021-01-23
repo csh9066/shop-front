@@ -4,7 +4,7 @@ import { StyledProductCard } from './styles';
 type Props = {
   thumnali: string;
   title: string;
-  price: string;
+  price: number;
 };
 
 function ProductCard({ price, thumnali, title }: Props) {
