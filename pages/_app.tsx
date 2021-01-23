@@ -3,13 +3,13 @@ import 'antd/dist/antd.css';
 import '../style/styles.css';
 
 import { AppProps } from 'next/dist/next-server/lib/router/router';
-import { UserProvider } from '../lib/contexts/UserContext';
+import { AuthProvider } from '../lib/contexts/AuthContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider>
+    <AuthProvider>
       <Component {...pageProps} />
-    </UserProvider>
+    </AuthProvider>
   );
 }
 

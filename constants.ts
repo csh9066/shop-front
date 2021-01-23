@@ -1,4 +1,4 @@
-export const JWT_LOGIN_TOKEN = 'login-token';
+export const ACCCESSS_TOKEN = 'access_token';
 export const API_URL = 'http://localhost:3005';
 export const ValidateMessages = {
   required: '필수 정보입니다.',
